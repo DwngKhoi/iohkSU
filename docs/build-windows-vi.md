@@ -25,11 +25,13 @@ python -m pip install json-with-comments
 
 Bản default có package cố định **`com.dwngkhoi.iohksu`**, dùng được luồng Check Stable Update/Check Beta Update của fork này.
 
-Từ thư mục root project `D:\lumla\iohkSU`:
+Từ thư mục root project `D:\lumla\iohkSU`, vào thư mục `manager` rồi chạy:
 
 ```powershell
-.\manager\gradlew.bat :app:assembleDebug
-.\manager\gradlew.bat :app:assembleRelease
+Push-Location .\manager
+.\gradlew.bat :app:assembleDebug
+.\gradlew.bat :app:assembleRelease
+Pop-Location
 ```
 
 - APK debug: `manager\app\build\outputs\apk\debug\`
