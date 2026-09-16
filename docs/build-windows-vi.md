@@ -1,54 +1,116 @@
-﻿# Build iohkSU on Windows
+# Hướng dẫn build iohkSU trên Windows
 
-## Prerequisites
+## 1. Chuẩn bị môi trường
 
-- Android Studio with its bundled JDK 21.
-- Android SDK Build Tools (provides `zipalign` and `apksigner`), the SDK platforms/build-tools required by Gradle, Android NDK and CMake versions declared by `manager/build.gradle.kts`.
-- Python 3.11+ to use the repack scripts. If using JSON-with-comments configuration, install `json-with-comments`: `python -m pip install json-with-comments`.
-- Rust Android toolchains only when you need to compile a replacement `ksud` binary. The Python repack operation itself expects it below `target/<triple>/<debug|release>/ksud`.
+Cài Android Studio (JDK 21 đi kèm), Android SDK Platform/Build Tools, CMake và Android NDK đúng phiên bản khai báo trong `manager/build.gradle.kts` (hiện là `29.0.14206865`). Cài Python 3.11+ để chạy script repack.
 
-Set `ANDROID_SDK_ROOT` to the Android SDK location. For optional stripping, set `ANDROID_NDK_HOME` to the installed Android NDK location.
-
-## Build manager APK
-
-In the `manager` directory:
-
-```powershell
-.\gradlew.bat :app:assembleDebug
-.\gradlew.bat :app:assembleRelease
-```
-
-Debug output is under `manager/app/build/outputs/apk/debug/`; release split and universal APKs are under `manager/app/build/outputs/apk/release/`.
-
-A release build signing setup uses the values expected by the `apksign` Gradle plugin. Keep this file local and never commit it:
+Thiết lập SDK cho project bằng `manager/local.properties` (file này chỉ dùng local, không commit):
 
 ```properties
-KEYSTORE_FILE=C:\secure\iohksu.jks
-KEYSTORE_PASSWORD=...
-KEY_ALIAS=...
-KEY_PASSWORD=...
+sdk.dir=C:\\Users\\<ten-ban>\\AppData\\Local\\Android\\Sdk
 ```
 
-## Repack an APK with `ksud`
-
-`repack_apk.py` takes the most recently built APK, injects the built `libksud.so` per ABI, aligns it for 16 KB pages, and signs it. Copy `repack-config.example.json` to ignored `repack-config.json`, then fill it with your local keystore data.
+Nếu dùng `repack-config.json` có comment, cài parser JSONC:
 
 ```powershell
-Copy-Item repack-config.example.json repack-config.json
+python -m pip install json-with-comments
+```
+
+Đặt `ANDROID_SDK_ROOT` trỏ đến Android SDK. Nếu muốn `--strip` binary `ksud`, đặt thêm `ANDROID_NDK_HOME` trỏ đến NDK.
+
+> [!IMPORTANT]
+> Không commit keystore, mật khẩu, `manager/local.properties` hay `repack-config.json`.
+
+## 2. Build bản default
+
+Bản default có package cố định **`com.dwngkhoi.iohksu`**, dùng được luồng Check Stable Update/Check Beta Update của fork này.
+
+Từ thư mục root project `D:\lumla\iohkSU`:
+
+```powershell
+.\manager\gradlew.bat :app:assembleDebug
+.\manager\gradlew.bat :app:assembleRelease
+```
+
+- APK debug: `manager\app\build\outputs\apk\debug\`
+- APK release (APK tách ABI và universal): `manager\app\build\outputs\apk\release\`
+
+Để tự ký release, khai báo trong `manager/gradle.properties` cục bộ:
+
+```properties
+KEYSTORE_FILE=C:\\secure\\iohksu.jks
+KEYSTORE_PASSWORD=mat-khau-keystore
+KEY_ALIAS=ten-alias
+KEY_PASSWORD=mat-khau-key
+```
+
+## 3. Build bản spoofed (package ngẫu nhiên)
+
+Bản spoofed thay package name bằng ba chuỗi chữ thường ngẫu nhiên (ví dụ `abcxyz.defghi.jklmno`) và thêm hậu tố `-spoofed` vào version. Do package khác mỗi lần build:
+
+- Không cập nhật đè default hoặc một spoofed APK khác.
+- Không dùng luồng Check Stable/Beta Update mặc định.
+- Luôn build trong bản sao tạm, **không chạy randomizer trực tiếp trong source default**.
+
+Từ root project, chạy script PowerShell sau:
+
+```powershell
+$source = 'D:\lumla\iohkSU\manager'
+$work = Join-Path $env:TEMP 'iohksu-spoofed'
+Remove-Item $work -Recurse -Force -ErrorAction SilentlyContinue
+robocopy $source $work /E /XD .gradle build .cxx /XF local.properties /R:1 /W:1
+if ($LASTEXITCODE -gt 7) { throw "robocopy thất bại: $LASTEXITCODE" }
+Copy-Item "$source\local.properties" "$work\local.properties" -ErrorAction Stop
+Push-Location $work
+& 'C:\Program Files\Git\bin\bash.exe' .\randomizer
+.\gradlew.bat :app:assembleDebug
+Pop-Location
+```
+
+APK spoofed debug nằm tại:
+
+```text
+%TEMP%\iohksu-spoofed\manager\app\build\outputs\apk\debug\
+```
+
+Kiểm tra package thực tế vừa sinh:
+
+```powershell
+$apk = Get-ChildItem "$env:TEMP\iohksu-spoofed\manager\app\build\outputs\apk\debug\*.apk" | Select-Object -Last 1
+& "$env:ANDROID_SDK_ROOT\build-tools\36.1.0\aapt.exe" dump badging $apk.FullName | Select-String '^package:'
+```
+
+## 4. Repack APK với `ksud`
+
+Repack thay `libksud.so` theo ABI, chạy `zipalign` cho page size 16 KB rồi ký lại bằng `apksigner`.
+
+1. Build APK Gradle trước.
+2. Build `ksud` đúng ABI để có file tại `target/<triple>/<debug|release>/ksud`.
+3. Tạo cấu hình cục bộ:
+
+```powershell
+Copy-Item .\repack-config.example.json .\repack-config.json
+```
+
+Điền `keystore_path`, `key_alias`, `keystore_pass`, `key_pass`, build type và ABI vào file vừa tạo.
+
+Repack APK mới nhất:
+
+```powershell
 python .\repack_apk.py repack -c .\repack-config.json -b release -t release -a arm64-v8a
 ```
 
-The result is written to `dist/`. For all APKs produced by Gradle, use:
+Repack toàn bộ APK Gradle output:
 
 ```powershell
 python .\repack_apk_multi.py repack -c .\repack-config.json -b release -t release
 ```
 
-Verify the signed result:
+APK đã ký được đặt tại `dist/`. Xác minh chữ ký:
 
 ```powershell
-& "$env:ANDROID_SDK_ROOT\build-tools\<version>\apksigner.bat" verify --verbose --print-certs .\dist\<apk>.apk
+& "$env:ANDROID_SDK_ROOT\build-tools\36.1.0\apksigner.bat" verify --verbose --print-certs .\dist\<ten-apk>.apk
 ```
 
 > [!WARNING]
-> Do not commit a keystore, passwords, or `repack-config.json`. APKs signed using a new key cannot update an APK signed with a different key.
+> APK ký bằng key mới không thể update đè APK ký bằng key cũ. Giữ keystore phát hành ở nơi an toàn.
