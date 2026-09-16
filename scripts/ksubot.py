@@ -80,7 +80,7 @@ Branch: {branch}
 </pre>
 {commit_line}
 <a href="{run_url}">Workflow run</a>
-<a href="https://nightly.link/Yakayna/AgnesSU/workflows/build-manager/main/Manager-debug.zip">Get latest main Debug build</a>
+<a href="https://nightly.link/DwngKhoi/iohkSU/workflows/build-manager/main/Manager-debug.zip">Get latest main Debug build</a>
 """.strip()
 MAIN_UPDATED_MSG ="""
 main branch updated, manager in there may outdated 

@@ -22,7 +22,7 @@ fun getGitCommitCount(): Int {
     }.standardOutput.asText.get().trim().toInt()
 }
 
-// AgnesSU version name: controlled via manager/version.txt so releases are named
+// iohkSU version name: controlled via manager/version.txt so releases are named
 // after the base version (matching ReSukiSU) without the auto commit-count suffix.
 // Bump iterations of the same base by editing the file to e.g. "v4.1.0_2", "v4.1.0_3".
 // Falls back to git describe if the file is missing/empty.

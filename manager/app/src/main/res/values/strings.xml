@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <string name="app_name" translatable="false">AgnesSU</string>
+    <string name="app_name" translatable="false">iohkSU</string>
     <string name="home">Home</string>
     <string name="learn_more">Learn more</string>
     <string name="home_not_installed">Not installed</string>
@@ -60,7 +60,7 @@
     <string name="reboot_download">Reboot to Download</string>
     <string name="reboot_edl">Reboot to EDL</string>
     <string name="about">About</string>
-    <string name="about_anime_character_sticker">Agnes Tàychyon by @Sinectrea</string>
+    <string name="about_anime_character_sticker">iohkSU by @KhoiScript</string>
     <string name="get_source_code">Check for source code</string>
     <string name="get_source_code_detail">Check for source code on GitHub</string>
     <string name="join_telegram_group">Join community</string>
@@ -547,7 +547,7 @@
     <string name="special_category">Special</string>
     <string name="install_libtgpa_title">Install libtgpa.so into AOV</string>
     <string name="install_libtgpa_summary">Replace libtgpa.so in Arena of Valor (com.garena.game.kgvn) using root</string>
-    <string name="libtgpa_screen_desc">Pick a libtgpa.so file, then AgnesSU replaces the one inside Arena of Valor (arm64) using root and keeps 755 permissions.</string>
+    <string name="libtgpa_screen_desc">Pick a libtgpa.so file, then iohkSU replaces the one inside Arena of Valor (arm64) using root and keeps 755 permissions.</string>
     <string name="libtgpa_pick_file">Choose libtgpa.so</string>
     <string name="libtgpa_selected_file">Selected: %1$s</string>
     <string name="libtgpa_no_file">No file selected yet</string>
@@ -555,7 +555,7 @@
     <string name="libtgpa_reinstall_dialog_title">Reinstall the game?</string>
     <string name="libtgpa_reinstall_dialog_msg">Have you already reinstalled Arena of Valor?
 
-If not, AgnesSU can reinstall it now with root before replacing the library.</string>
+If not, iohkSU can reinstall it now with root before replacing the library.</string>
     <string name="libtgpa_reinstall_yes">Already reinstalled</string>
     <string name="libtgpa_reinstall_no">Reinstall for me</string>
     <string name="libtgpa_cancel">Cancel</string>

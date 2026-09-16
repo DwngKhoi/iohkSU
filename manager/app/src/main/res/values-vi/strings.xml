@@ -405,7 +405,7 @@
     <string name="special_category">Đặc biệt</string>
     <string name="install_libtgpa_title">Cài libtgpa.so vào AOV</string>
     <string name="install_libtgpa_summary">Thay thế libtgpa.so trong Liên Quân (com.garena.game.kgvn) bằng quyền root</string>
-    <string name="libtgpa_screen_desc">Chọn file libtgpa.so, sau đó AgnesSU sẽ thay thế file trong Liên Quân (arm64) bằng quyền root và giữ nguyên quyền 755.</string>
+    <string name="libtgpa_screen_desc">Chọn file libtgpa.so, sau đó iohkSU sẽ thay thế file trong Liên Quân (arm64) bằng quyền root và giữ nguyên quyền 755.</string>
     <string name="libtgpa_pick_file">Chọn libtgpa.so</string>
     <string name="libtgpa_selected_file">Đã chọn: %1$s</string>
     <string name="libtgpa_no_file">Chưa chọn file nào</string>
@@ -413,7 +413,7 @@
     <string name="libtgpa_reinstall_dialog_title">Cài lại game?</string>
     <string name="libtgpa_reinstall_dialog_msg">Bạn đã cài lại Liên Quân chưa?
 
-Nếu chưa, AgnesSU có thể cài lại ngay bằng quyền root trước khi thay thế thư viện.</string>
+Nếu chưa, iohkSU có thể cài lại ngay bằng quyền root trước khi thay thế thư viện.</string>
     <string name="libtgpa_reinstall_yes">Đã cài lại rồi</string>
     <string name="libtgpa_reinstall_no">Cài lại giúp tôi</string>
     <string name="libtgpa_cancel">Huỷ</string>

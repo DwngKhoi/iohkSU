@@ -1,16 +1,16 @@
-# AgnesSU
-<img align='right' src='ReSukiSU_blue.svg' width='220px' alt="AgnesSU Icon">
+# iohkSU
+<img align='right' src='ReSukiSU_blue.svg' width='220px' alt="iohkSU Icon">
 
 
 **English** | [简体中文](./zh/README.md)
 
 A based-on [`SukiSU-Ultra/SukiSU-Ultra`](https://github.com/SukiSU-Ultra/SukiSU-Ultra) fork, added some interesting changes, also make it more stable and build easily.
 
-[![Latest release](https://img.shields.io/github/v/release/Yakayna/AgnesSU?label=Release&logo=github)](https://github.com/Yakayna/AgnesSU/releases/latest)
-[![Latest CI build (nightly.link)](https://img.shields.io/badge/nightly.link-Latest%20CI%20Build-800080)](https://nightly.link/Yakayna/AgnesSU/workflows/build-manager/main)
-[![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/agnescuteee)
+[![Latest release](https://img.shields.io/github/v/release/DwngKhoi/iohkSU?label=Release&logo=github)](https://github.com/DwngKhoi/iohkSU/releases/latest)
+[![Latest CI build (nightly.link)](https://img.shields.io/badge/nightly.link-Latest%20CI%20Build-800080)](https://nightly.link/DwngKhoi/iohkSU/workflows/build-manager/main)
+[![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/dwngkhoi)
 [![Kernel License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-orange.svg?logo=gnu)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![Other part License：GPL v3](https://img.shields.io/github/license/Yakayna/AgnesSU?logo=gnu)](/LICENSE)
+[![Other part License：GPL v3](https://img.shields.io/github/license/DwngKhoi/iohkSU?logo=gnu)](/LICENSE)
 
 ## Features
 
@@ -19,11 +19,11 @@ A based-on [`SukiSU-Ultra/SukiSU-Ultra`](https://github.com/SukiSU-Ultra/SukiSU-
 3. [App Profile](https://kernelsu.org/guide/app-profile.html): Lock up the root power in a cage
 4. Support non-GKI and GKI 1.0
 5. Tweaks to the manager theme and the built-in susfs management tool.
-6. Multi manager support, for default [Official KernelSU](https://github.com/tiann/KernelSU)/[RKSU](https://github.com/rsuntk/KernelSU)/[MKSU](https://github.com/5ec1cff/KernelSU)/[SukiSU](https://github.com/SukiSU-Ultra/SukiSU-Ultra) is supported work as manager with AgnesSU's kernel
+6. Multi manager support, for default [Official KernelSU](https://github.com/tiann/KernelSU)/[RKSU](https://github.com/rsuntk/KernelSU)/[MKSU](https://github.com/5ec1cff/KernelSU)/[SukiSU](https://github.com/SukiSU-Ultra/SukiSU-Ultra) is supported work as manager with iohkSU's kernel
 
 ## Compatibility Status
 
-- AgnesSU officially supports Android GKI 2.0 devices (kernel 5.10+).
+- iohkSU officially supports Android GKI 2.0 devices (kernel 5.10+).
 
 - Older kernels (3.4+) are also compatible, but the kernel will have to be built manually.
 
@@ -40,7 +40,7 @@ A based-on [`SukiSU-Ultra/SukiSU-Ultra`](https://github.com/SukiSU-Ultra/SukiSU-
 
 ## Integration
 
-See the [documentation](https://AgnesSU.github.io).
+See the [documentation](https://iohkSU.github.io).
 
 ## Translation
 
@@ -71,7 +71,7 @@ If you need to submit a translation for the manager, please go to [Weblate](http
 
 ## Localization
 
-Help translate AgnesSU on Weblate:
+Help translate iohkSU on Weblate:
 
 https://hosted.weblate.org/engage/resukisu/
 

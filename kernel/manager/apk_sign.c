@@ -1,4 +1,4 @@
-#include <linux/err.h>
+﻿#include <linux/err.h>
 #include <linux/fs.h>
 #include <linux/gfp.h>
 #include <linux/kernel.h>
@@ -32,7 +32,7 @@ struct sdesc {
 };
 
 static apk_sign_key_t apk_sign_keys[] = {
-    { EXPECTED_SIZE_AGNESSU, EXPECTED_HASH_AGNESSU }, /* AgnesSU/AgnesSU */
+    { EXPECTED_SIZE_IOHKSU, EXPECTED_HASH_IOHKSU }, /* iohkSU */
 #ifdef CONFIG_KSU_MULTI_MANAGER_SUPPORT
     { EXPECTED_SIZE_RESUKISU, EXPECTED_HASH_RESUKISU }, // ReSukiSU/ReSukiSU
     { EXPECTED_SIZE_OFFICIAL, EXPECTED_HASH_OFFICIAL }, // tiann/KernelSU

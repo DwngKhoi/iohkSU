@@ -19,7 +19,7 @@ identify the nearest existing implementation pattern and preserve the project st
 
 ## Repository package layout
 
-The application code is rooted at `com.agnessu.yakayn`.
+The application code is rooted at `com.dwngkhoi.iohksu`.
 
 * `data/` — data repositories and related data-layer implementation.
 * `ui/` — user-interface code, including pages, state, and reusable Compose components.
@@ -29,7 +29,7 @@ complete a change faster.
 
 ### Data layer
 
-Repository implementations belong under `com.agnessu.yakayn.data` and its subpackages. Keep
+Repository implementations belong under `com.dwngkhoi.iohksu.data` and its subpackages. Keep
 persistence, data loading, mapping, and repository concerns in this layer. Do not embed UI
 composition or presentation-only behavior in repositories.
 
@@ -42,7 +42,7 @@ composition or presentation-only behavior in repositories.
 All reusable UI components must be placed under:
 
 ```text
-com.agnessu.yakayn.ui.component
+com.dwngkhoi.iohksu.ui.component
 ```
 
 Do not create parallel reusable-component packages inside individual pages, features, or view
@@ -52,16 +52,16 @@ components intended for reuse must live in `ui.component`.
 ### Dialog
 
 Every custom dialog should manage by
-`com.agnessu.yakayn.ui.component.Dialog#rememberCustomDialog`,
-if you need confirmDialog, use `com.agnessu.yakayn.ui.component.Dialog#rememberConfirmDialog`,
-if you need loadingDialog, use `com.agnessu.yakayn.ui.component.Dialog#rememberLoadingDialog`
+`com.dwngkhoi.iohksu.ui.component.Dialog#rememberCustomDialog`,
+if you need confirmDialog, use `com.dwngkhoi.iohksu.ui.component.Dialog#rememberConfirmDialog`,
+if you need loadingDialog, use `com.dwngkhoi.iohksu.ui.component.Dialog#rememberLoadingDialog`
 
 ### Settings UI
 
 Use the settings component system under:
 
 ```text
-com.agnessu.yakayn.ui.component.settings
+com.dwngkhoi.iohksu.ui.component.settings
 ```
 
 Do not hand-build settings rows, dividers, switch rows, page-navigation rows, or similar settings
@@ -100,7 +100,7 @@ handler, divider, shape, and trailing icon/switch just to reproduce a standard s
 When a component needs a dynamic rounded-corner animation, use the implementation in:
 
 ```text
-com.agnessu.yakayn.ui.component.settings.material3internal.AnimatedShape.kt
+com.dwngkhoi.iohksu.ui.component.settings.material3internal.AnimatedShape.kt
 ```
 
 Do not introduce duplicate animated-shape implementations or manually interpolate equivalent corner
@@ -170,8 +170,8 @@ For implementation tasks:
 
 Before completing a UI or settings task, verify:
 
-* Reusable components are under `com.agnessu.yakayn.ui.component`.
-* Settings screens use `com.agnessu.yakayn.ui.component.settings` components.
+* Reusable components are under `com.dwngkhoi.iohksu.ui.component`.
+* Settings screens use `com.dwngkhoi.iohksu.ui.component.settings` components.
 * Static settings groups use `SegmentedColumn`; runtime-changing groups use `LazySegmentedColumn`.
 * Standard settings rows use the relevant `SettingsBaseWidget` wrapper instead of a hand-built
   equivalent.
