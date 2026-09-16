@@ -1,9 +1,9 @@
-﻿#ifndef MANAGER_SIGN_H
+#ifndef MANAGER_SIGN_H
 #define MANAGER_SIGN_H
 
-// iohkSU/iohkSU (DwngKhoi)
-#define EXPECTED_SIZE_IOHKSU 0x364
-#define EXPECTED_HASH_IOHKSU "2d19acc8d27c1285e2ca04ffb60fbcb0d44b05daf2cfdbf5f7101aa17e2dc849"
+// iohkSU (DwngKhoi) release certificate
+#define EXPECTED_SIZE_IOHKSU 0x582
+#define EXPECTED_HASH_IOHKSU "d4778ff30e6d1352b3691266e74536a75ef6d5dd8535d39e0821c7b9c833d4aa"
 
 // tiann/KernelSU
 #define EXPECTED_SIZE_OFFICIAL 0x033b
